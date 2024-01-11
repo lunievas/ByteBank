@@ -9,6 +9,24 @@ const graficoParaDolar = new Chart(graficoDolar, {
         data: [12, 19, 3, 5, 2, 3],
         borderWidth: 1
       }]
-    },
+    }    
+    
+});
 
-  });
+  async function conectaAPI() {
+    const conecta = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL');
+    const conectaTraduzido =  await conecta.json();
+
+    console.log(conectaTraduzido);
+}
+
+setInterval(()=> conectaAPI(), 5000);
+
+function geraHorario(){
+    let data = new Date();
+    let horario = data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds();
+    console.log(horario);
+    return horario; 
+}
+
+geraHorario();
